@@ -120,104 +120,132 @@ class LinkedListTest < Test::Unit::TestCase
     ll.add_item("bar")
     ll.add_item("good")
     ll.add_item("foo")
-    assert_equal(0, ll.index("foo"))
+    assert_equal([0, 3], ll.index("foo"))
   end
+  
+  def test_15m_test_of_comparison
+    ll = LinkedList.new()
+    lli = ll.add_item("foo")
+    ll.add_item("bar")
+    assert_equal(-1, ll.index("foo").<=>(ll.index("bar")))
+    #assert_equal(lli.payload.<=>(ll2.payload))
+  end
+  
+  def test_15n_first_test_of_sort
+    ll = LinkedList.new()
+    lli = ll.add_item("c")
+    lli = ll.add_item("b")
+    lli = ll.add_item("a")
+    lli = ll.add_item("y")
+    #assert_equal("| c |", ll.to_s)
+    assert_equal("| c |", ll[0])
+  end
+  
+  def test_15o_first_test_of_sort
+    ll = LinkedList.new()
+    lli = ll.add_item("c")
+    lli = ll.add_item("b")
+    lli = ll.add_item("a")
+    lli = ll.add_item("y")
+    assert_equal("| a, b, c |", ll.sort!)
+  end
+  
 
  # ========= Bonus ========== #
 
-  def test_16_initialize_takes_seed_argument
-    ll = LinkedList.new("foo")
-    assert_equal "| foo |", ll.to_s
-  end
-
-  def test_17_initialize_takes_seed_arguments
-    ll = LinkedList.new("foo", "bar", "grille")
-    assert_equal '| foo, bar, grille |', ll.to_s
-  end
-
-  def test_18_bracket_accessor
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    assert_equal("grille", ll[2])
-  end
-
-  def test_19_bracket_assignment
-    ll = LinkedList.new("foo", "bar", "grille")
-    ll[1] = "bar-be-que"
-    assert_equal("bar-be-que", ll[1])
-  end
-
-  def test_20_bracket_assignment_results
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll[1] = "bar-be-que"
-    assert_equal '| foo, bar-be-que, grille |', ll.to_s
-  end
-
-  def test_21_remove_item_changes_size
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll.remove(2)
-
-    assert_equal(2, ll.size)
-  end
-
-  def test_22_remove_item_removes_correct_item
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll.remove(2)
-
-    assert_equal '| foo, bar |', ll.to_s
-  end
-
-  def test_23_remove_item_from_beginning_of_list
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll.remove(0)
-
-    assert_equal '| bar, grille |', ll.to_s
-  end
-
-  def test_24_remove_item_from_middle_of_list
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll.add_item("dog")
-    ll.add_item("elephant")
-    ll.remove(2)
-
-    assert_equal '| foo, bar, dog, elephant |', ll.to_s
-  end
-
-  def test_24_remove_item_from_end_of_list
-    ll = LinkedList.new
-    ll.add_item("foo")
-    ll.add_item("bar")
-    ll.add_item("grille")
-    ll.add_item("dog")
-    ll.add_item("elephant")
-    ll.remove(4)
-
-    assert_equal '| foo, bar, grille, dog |', ll.to_s
-  end
-
-  def test_25_remove_item_that_doesnt_exist
-    ll = LinkedList.new
-    assert_raise IndexError do
-      ll.remove(1)
-    end
-  end
+#   def test_16_initialize_takes_seed_argument
+#     ll = LinkedList.new("foo")
+#     assert_equal "| foo |", ll.to_s
+#   end
+# 
+#   def test_17_initialize_takes_seed_arguments
+#     ll = LinkedList.new("foo", "bar", "grille")
+#     assert_equal '| foo, bar, grille |', ll.to_s
+#   end
+# 
+#   def test_18_bracket_accessor
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     assert_equal("grille", ll[2])
+#   end
+# 
+#   def test_19_bracket_assignment
+#     ll = LinkedList.new("foo", "bar", "grille")
+#     ll[1] = "bar-be-que"
+#     assert_equal("bar-be-que", ll[1])
+#   end
+# 
+#   def test_20_bracket_assignment_results
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll[1] = "bar-be-que"
+#     assert_equal '| foo, bar-be-que, grille |', ll.to_s
+#   end
+# 
+#   def test_21_remove_item_changes_size
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll.remove(2)
+# 
+#     assert_equal(2, ll.size)
+#   end
+# 
+#   def test_22_remove_item_removes_correct_item
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll.remove(2)
+# 
+#     assert_equal '| foo, bar |', ll.to_s
+#   end
+# 
+#   def test_23_remove_item_from_beginning_of_list
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll.remove(0)
+# 
+#     assert_equal '| bar, grille |', ll.to_s
+#   end
+# 
+#   def test_24_remove_item_from_middle_of_list
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll.add_item("dog")
+#     ll.add_item("elephant")
+#     ll.remove(2)
+# 
+#     assert_equal '| foo, bar, dog, elephant |', ll.to_s
+#   end
+# 
+#   def test_24_remove_item_from_end_of_list
+#     ll = LinkedList.new
+#     ll.add_item("foo")
+#     ll.add_item("bar")
+#     ll.add_item("grille")
+#     ll.add_item("dog")
+#     ll.add_item("elephant")
+#     ll.remove(4)
+# 
+#     assert_equal '| foo, bar, grille, dog |', ll.to_s
+#   end
+# 
+#   def test_25_remove_item_that_doesnt_exist
+#     ll = LinkedList.new
+#     assert_raise IndexError do
+#       ll.remove(1)
+#     end
+#   end
   
 
 

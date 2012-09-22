@@ -47,14 +47,14 @@ class LinkedList
     if size == 0
       "| |"
     else
-      output = "| "
+      items = []
       item = @first_item
       while item
-        output += item.payload
-        item = item.next_list_item
+       items << item.payload
+         item = item.next_list_item
       end
-      #output = "| "
-     # output += items.join(", ")
+      output = "| "
+     output += items.join(", ")
       output += " |"
     end
   end
@@ -62,21 +62,33 @@ class LinkedList
   def index(term)
     i = 0
     item = @first_item
-    while (item != nil) && (item.payload != term)
+    matches = []
+    while item
       raise IndexError if item.nil?
      # else
+        matches << i if item.payload == term
         item = item.next_list_item
         i += 1
     #  end # if
     end # while
-       if item.payload == nil || item == nil
-        return nil
-      else
-       return i
-      end 
+    if matches.length > 1
+    matches
+    else
+    matches[0]
+    end
+  end 
  
+  def sort!
+    list_length = self.size
+    loop do
+      0.upto(list_length) do |i|
+      my_array = []
+      self.payload[i] >> my_array
+       end #do
+    end #loop
+    my_array
+  end
  
- end # def
 
 
   # ========= Bonus ========== #

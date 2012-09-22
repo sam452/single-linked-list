@@ -24,4 +24,8 @@ class LinkedListItem
     #   true
     # end
   end
+  
+  def <=>(other)
+    self.payload <=> other.paylaod
+  end
 end
