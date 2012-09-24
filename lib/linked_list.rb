@@ -1,4 +1,4 @@
-require 'linked_list_item'
+require_relative 'linked_list_item'
 
 class LinkedList
   attr_reader :first_item
@@ -80,13 +80,27 @@ class LinkedList
  
   def sort!
     list_length = self.size
-    loop do
-      0.upto(list_length) do |i|
-      my_array = []
-      self.payload[i] >> my_array
-       end #do
-    end #loop
-    my_array
+    return self if list_length <= 1
+    item = @first_item
+    myItem = []
+    until item.next_list_item == nil
+      myItem << item.payload
+      item = item.next_list_item
+    end
+   i = 0
+   loop do
+    swapped = false
+    0.upto(myItem.size - 2) do |i|
+      if myItem[i] > myItem[i + 1]
+        myItem[i], myItem[i + 1] = myItem[i + 1], myItem[i]
+        swapped = true
+      end #do
+     end #if
+       break unless swapped
+     end #looop
+  myList = LinkedList.new()
+  myItem.each { |dump| } myList.add_item(dump)
+  myList
   end
  
 

@@ -127,8 +127,8 @@ class LinkedListTest < Test::Unit::TestCase
     ll = LinkedList.new()
     lli = ll.add_item("foo")
     ll.add_item("bar")
-    assert_equal(-1, ll.index("foo").<=>(ll.index("bar")))
-    #assert_equal(lli.payload.<=>(ll2.payload))
+    #assert_equal(-1, ll.index("foo").<=>(ll.index("bar")))
+    assert_equal(lli.payload.<=>(ll2.payload))
   end
   
   def test_15n_first_test_of_sort
@@ -138,7 +138,7 @@ class LinkedListTest < Test::Unit::TestCase
     lli = ll.add_item("a")
     lli = ll.add_item("y")
     #assert_equal("| c |", ll.to_s)
-    assert_equal("| c |", ll[0])
+    assert_equal("| c |", ll[0].to_s)
   end
   
   def test_15o_first_test_of_sort
